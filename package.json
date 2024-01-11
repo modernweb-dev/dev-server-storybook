@@ -1,0 +1,123 @@
+{
+  "name": "@web/dev-server-storybook",
+  "version": "2.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Dev server plugin for using storybook with es modules.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modernweb-dev/web.git",
+    "directory": "packages/dev-server-storybook"
+  },
+  "author": "modern-web",
+  "homepage": "https://github.com/modernweb-dev/web/tree/master/packages/dev-server-storybook",
+  "main": "dist/index.js",
+  "bin": {
+    "build-storybook": "dist/build/cli.js"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/serve/storybookPlugin.js",
+      "types": "./dist/serve/storybookPlugin.d.ts"
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build:wc": "node dist/build/cli.js -c demo/wc/.storybook",
+    "start:build": "wds --root-dir storybook-static --open",
+    "start:preact": "wds --config demo/preact/web-dev-server.config.mjs",
+    "start:wc": "wds --config demo/wc/web-dev-server.config.mjs",
+    "test": "echo \"This package has no tests\"",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "format:eslint": "eslint --ext .ts,.js,.mjs,.cjs . --fix",
+    "format:prettier": "prettier \"**/*.{ts,js,mjs,cjs,md}\" \"**/package.json\" --write --ignore-path .eslintignore",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint --ext .ts,.js,.mjs,.cjs .",
+    "lint:prettier": "prettier \"**/*.{ts,js,mjs,cjs,md}\" --check --ignore-path .eslintignore"
+  },
+  "files": [
+    "*.d.ts",
+    "*.js",
+    "*.mjs",
+    "CHANGELOG.md",
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "web",
+    "dev",
+    "server",
+    "plugin",
+    "storybook",
+    "buildless",
+    "es modules",
+    "modules",
+    "esm"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@mdx-js/mdx": "^1.6.22",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@storybook/csf-tools": "^6.4.9",
+    "@web/dev-server-core": "^0.7.0",
+    "@web/rollup-plugin-html": "^2.1.2",
+    "@web/rollup-plugin-polyfills-loader": "^2.1.1",
+    "@web/storybook-prebuilt": "^0.1.37",
+    "babel-plugin-bundled-import-meta": "^0.3.2",
+    "babel-plugin-template-html-minifier": "^4.1.0",
+    "es-module-lexer": "^1.0.2",
+    "globby": "^11.0.1",
+    "path-is-inside": "^1.0.2",
+    "rollup": "^4.4.0",
+    "storybook-addon-markdown-docs": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/path-is-inside": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@web/dev-server": "^0.4.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "htm": "^3.1.0",
+    "prettier": "^3.1.1"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "eslint-config-prettier",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true,
+      "es2020": true
+    },
+    "rules": {
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-empty-interface": "off",
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/ban-ts-comment": "off"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "printWidth": 100,
+    "trailingComma": "all"
+  }
+}
